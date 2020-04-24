@@ -1,0 +1,40 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block content %}
+    <div class="mt-lg-3 ml-3 mr-3">
+        <div class="card-deck">
+            <div class="card text-center" style="max-width: 40rem;">
+                <img src="{% static 'images/start-home/blog_page.jpg' %}" class="rounded-circle mx-auto d-block mt-3"
+                     alt="View Blog Page" style="width: 15em; height: 15em;">
+                <div class="card-body">
+                    <h5 class="card-title">View Blog Page</h5>
+                    <p class="card-text">Check out all information about patches, tobacco news and more...</p>
+                    <a href="{% url 'blog-home' %}" class="btn btn-primary stretched-link">View Brands</a>
+                </div>
+            </div>
+
+            <div class="card text-center" style="max-width: 40rem;">
+                <img src="{% static 'images/start-home/tobacco_page.jpg' %}" class="rounded-circle mx-auto d-block mt-3"
+                     alt="View Tobacco Page" style="width: 15em; height: 15em;">
+                <div class="card-body">
+                    <h5 class="card-title">View Tobacco Page</h5>
+                    <p class="card-text">View or add all information about tobacco brands, tobacco brands, tobacco
+                        varieties, tobacco quality...</p>
+                    <a href="{% url 'tobacco-home' %}" class="btn btn-primary stretched-link">View Tobacco</a>
+                </div>
+            </div>
+
+            <div class="card text-center" style="max-width: 40rem;">
+                <img src="{% static 'images/start-home/lab_page.jpg' %}" class="rounded-circle mx-auto d-block mt-3"
+                     alt="View Lab Page" style="width: 15em; height: 15em;">
+                <div class="card-body">
+                    <h5 class="card-title">View Lab Page</h5>
+                    <p class="card-text">View all information about current tests, new apps, upcoming features or
+                        more...</p>
+                    <a href="#" class="btn btn-primary stretched-link">View Lab</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

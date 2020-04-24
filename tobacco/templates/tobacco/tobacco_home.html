@@ -1,0 +1,47 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block content %}
+    <div class="content-section mt-3 ml-3 mr-3 border-0">
+        <div class="card-deck">
+            <div class="card text-center" style="max-width: 35rem;">
+                <img src="{% static 'images/app_tobacco/tobaccolist_page.jpg' %}"
+                     class="rounded-circle mx-auto d-block mt-3" alt="Show Tobacco List"
+                     style="width: 11em; height: 11em;">
+                <div class="card-body">
+                    <h5 class="card-title">Show Tobacco List</h5>
+                    <a href="{% url 'tobacco-list-view' %}" class="btn btn-primary stretched-link">View Tobacco List</a>
+                </div>
+            </div>
+
+            <div class="card text-center" style="max-width: 35rem;">
+                <img src="{% static 'images/app_tobacco/tobaccolist_page.jpg' %}"
+                     class="rounded-circle mx-auto d-block mt-3" alt="Add Tobacco List"
+                     style="width: 11em; height: 11em;">
+                <div class="card-body">
+                    <h5 class="card-title">Add Tobacco List</h5>
+                    <a href="{% url 'tobacco-list-add' %}" class="btn btn-primary stretched-link">Add Tobacco List</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content-section card mt-3 ml-3 mr-3  border-0">
+        <table class="table table-hover" style="max-width: 72rem;">
+            <thead>
+            <tr class="table-primary">
+                <th scope="col">Brand</th>
+                <th scope="col">Name</th>
+                <th scope="col">Taste</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for tbc in tobacco %}
+                <tr class="table-light">
+                    <td>{{ tbc.BrandID.Brand }}</td>
+                    <td>{{ tbc.Name }}</td>
+                    <td>{{ tbc.Taste }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

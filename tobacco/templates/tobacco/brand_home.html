@@ -1,0 +1,45 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block content %}
+    <div class="content-section card mt-3 ml-3 mr-3 border-0">
+        <div class="card-deck">
+            <div class="card text-center" style="max-width: 35rem;">
+                <img src="{% static 'images/app_tobacco/brands_page.jpg' %}" class="rounded-circle mx-auto d-block mt-3"
+                     alt="Show Tobacco Brands" style="width: 11em; height: 11em;">
+                <div class="card-body">
+                    <h5 class="card-title">View Tobacco Brands</h5>
+                    <a href="{% url 'tobacco-brands-view' %}" class="btn btn-primary stretched-link">View Brands</a>
+                </div>
+            </div>
+
+            <div class="card text-center" style="max-width: 35rem;">
+                <img src="{% static 'images/app_tobacco/brands_page.jpg' %}" class="rounded-circle mx-auto d-block mt-3"
+                     alt="Add Tobacco Brands" style="width: 11em; height: 11em;">
+                <div class="card-body">
+                    <h5 class="card-title">Add Tobacco Brands</h5>
+                    <a href="{% url 'tobacco-brands-add' %}" class="btn btn-primary stretched-link">Add Brands</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content-section card mt-3 ml-3 mr-3  border-0">
+        <table class="table table-hover" style="max-width: 72rem;">
+            <thead>
+            <tr class="table-primary">
+                <th scope="col">Brand</th>
+                <th scope="col">Price</th>
+                <th scope="col">Weight</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for brand in brands %}
+                <tr class="table-light">
+                    <td>{{ brand.Brand }}</td>
+                    <td>{{ brand.Price }} €</td>
+                    <td>{{ brand.Weight }} g</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

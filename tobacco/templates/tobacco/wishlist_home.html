@@ -1,0 +1,49 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block content %}
+    <div class="content-section mt-3 ml-3 mr-3 border-0">
+        <div class="card-deck">
+            <div class="card text-center" style="max-width: 35rem;">
+                <img src="{% static 'images/app_tobacco/wishlist_page.jpg' %}"
+                     class="rounded-circle mx-auto d-block mt-3" alt="Show Inventory List"
+                     style="width: 11em; height: 11em;">
+                <div class="card-body">
+                    <h5 class="card-title">Show Wishlist</h5>
+                    <a href="{% url 'tobacco-wishlist-view' %}" class="btn btn-primary stretched-link">View Wishlist</a>
+                </div>
+            </div>
+
+            <div class="card text-center" style="max-width: 35rem;">
+                <img src="{% static 'images/app_tobacco/wishlist_page.jpg' %}"
+                     class="rounded-circle mx-auto d-block mt-3" alt="Inventory List"
+                     style="width: 11em; height: 11em;">
+                <div class="card-body">
+                    <h5 class="card-title">Add Wishlist</h5>
+                    <a href="{% url 'tobacco-wishlist-add' %}" class="btn btn-primary stretched-link">Add Wishlist</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content-section card mt-3 ml-3 mr-3  border-0">
+        <table class="table table-hover" style="max-width: 72rem;">
+            <thead>
+            <tr class="table-primary">
+                <th scope="col">Brand</th>
+                <th scope="col">Tobacco</th>
+                <th scope="col">Quantity</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for wish in wishlist %}
+                {% if wish.TobaccoID.Wish == True %}
+                    <tr class="table-light">
+                        <td>{{ wish.TobaccoID.BrandID.Brand }}</td>
+                        <td>{{ wish.TobaccoID.Name }}</td>
+                        <td>{{ wish.Priority }}</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

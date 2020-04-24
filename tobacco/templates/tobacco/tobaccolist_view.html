@@ -1,0 +1,63 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block content %}
+    {% for tbc in tobacco %}
+        <div class="card mt-3 ml-3 mr-3 mb-3" style="max-width: 50rem;"><a class="text-decoration-none"
+                                                                           href="{% url 'tobacco-detail' tbc.TobaccoID %}">
+            <div class="row no-gutters">
+                <div class="col-md-3 mt-2">
+                    <img src="{{ tbc.Image.url }}" class="rounded-circle mx-auto d-block mt-1 mb-1" alt="{{ tbc.Name }}"
+                         style="width: 9em; height: 9em;">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <p class="mb-1">
+                            <test class="card-title ">{{ tbc.Name }} </test>
+                            <test class="ml-3">[{{ tbc.BrandID.Brand }}]</test>
+                        </p>
+
+                        <p class="card-text mb-0">
+                            <code>Taste: </code>
+                            <code>{{ tbc.Taste }}</code>
+                        </p>
+                        <p class="card-text mb-0">
+                            <code>Comment: </code>
+                            <code>{{ tbc.Comment }}</code>
+                        </p>
+                        <p class="card-text mb-0">
+                            <code>Inventory: </code>
+                            <code class="mr-2">{{ tbc.Inventory }}</code>
+                        </p>
+                        <p class="card-text mb-0">
+                            <code class="mr-2">Wishlist: </code>
+                            <code>{{ tbc.Wish }}</code>
+                        </p>
+                        <small class="float-right mb-1"> {{ tbc.Date_Posted | date:"d F Y" }}</small>
+                    </div>
+                </div>
+            </div>
+        </a></div>
+    {% endfor %}
+    <div class="ml-3">
+        {% if is_paginated %}
+            {% if page_obj.has_previous %}
+                <a class="btn btn-outline-primary mb-4" href="?page=1">First</a>
+                <a class="btn btn-outline-primary mb-4 " href="?page={{ page_obj.previous_page_number }}">Previous</a>
+            {% endif %}
+
+            {% for num in page_obj.paginator.page_range %}
+                {% if page_obj.number == num %}
+                    <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                    <a class="btn btn-outline-primary mb-4" href="?page={{ num }}">{{ num }}</a>
+                {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+                <a class="btn btn-outline-primary mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+                <a class="btn btn-outline-primary mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+            {% endif %}
+
+        {% endif %}
+    </div>
+{% endblock content %}

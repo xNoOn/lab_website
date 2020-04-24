@@ -1,0 +1,53 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block content %}
+    <div class="content-section card mt-3 ml-3 mr-3  border-0">
+        <div class="card-deck">
+            <div class="card text-center" style="max-width: 30rem;">
+                <a href="{% url 'tobacco-brands-home' %}" class="text-decoration-none">
+                    <img src="{% static 'images/app_tobacco/brands_page.jpg' %}" class="rounded-circle mx-auto d-block mt-3"
+                         alt="Show Tobacco Brands" style="width: 11em; height: 11em;">
+                    <div class="card-body">
+                        <h5 class="card-title">Brands</h5>
+                    </div>
+                </a>
+            </div>
+
+            <div class="card text-center" style="max-width: 30rem;">
+                <a href="{% url 'tobacco-list-home' %}" class="text-decoration-none">
+                    <img src="{% static 'images/app_tobacco/tobaccolist_page.jpg' %}"
+                         class="rounded-circle mx-auto d-block mt-3"
+                         alt="Add Tobacco Brands" style="width: 11em; height: 11em;">
+                    <div class="card-body">
+                        <h5 class="card-title">Tobacco List</h5>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="content-section ml-3 mr-3 border-0">
+        <div class="card-deck">
+            <div class="card text-center" style="max-width: 30rem;">
+                <a href="{% url 'tobacco-inventory-home' %}" class="text-decoration-none">
+                    <img src="{% static 'images/app_tobacco/inventory_page.jpg' %}"
+                         class="rounded-circle mx-auto d-block mt-3" alt="Show Tobacco List"
+                         style="width: 11em; height: 11em;">
+                    <div class="card-body">
+                        <h5 class="card-title">Inventory</h5>
+                    </div>
+                </a>
+            </div>
+
+            <div class="card text-center" style="max-width: 30rem;">
+                <a href="{% url 'tobacco-wishlist-home' %}" class="text-decoration-none">
+                    <img src="{% static 'images/app_tobacco/wishlist_page.jpg' %}"
+                         class="rounded-circle mx-auto d-block mt-3" alt="Add Tobacco List"
+                         style="width: 11em; height: 11em;">
+                    <div class="card-body">
+                        <h5 class="card-title">Wishlist</h5>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
