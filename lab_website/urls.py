@@ -28,8 +28,8 @@ urlpatterns = [
     path('', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
     path('home/', HomeView.as_view(), name='home-start'),
     path('tobacco/', include('tobacco.urls'), name='tobacco-home'),
+    path('api/', include('api.urls'), name='api-home'),
 ]
-
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
