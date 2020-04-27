@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'tobacco.apps.TobaccoConfig',
     'users.apps.UsersConfig',
     'api.apps.ApiConfig',
+    'lab.apps.LabConfig',
     'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',

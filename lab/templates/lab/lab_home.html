@@ -1,0 +1,32 @@
+{% extends "users/base.html" %}
+{% load static %}
+{% block content %}
+    <div class="content-section card mt-3 ml-3 mr-3  border-0">
+        <table class="table table-hover" style="max-width: 72rem;">
+            <thead>
+            <tr class="table-primary">
+                <th scope="col">Labs</th>
+                <th scope="col">Status</th>
+                <th scope="col">Link</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="table-active">
+                <td>Diagrams</td>
+                <td>Activ</td>
+                <td><a href="{% url 'diagrams-home' %}" class="text-dark">Link</a></td>
+            </tr>
+            <tr class="table-light">
+                <td>Spotify</td>
+                <td>Planed</td>
+                <td><a href="#" class="text-dark">Link</a></td>
+            </tr>
+            <tr class="table-light">
+                <td>React + Django Website</td>
+                <td>Planed</td>
+                <td><a href="#" class="text-dark">Link</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

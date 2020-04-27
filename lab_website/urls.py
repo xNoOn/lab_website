@@ -29,6 +29,8 @@ urlpatterns = [
     path('home/', HomeView.as_view(), name='home-start'),
     path('tobacco/', include('tobacco.urls'), name='tobacco-home'),
     path('api/', include('api.urls'), name='api-home'),
+    path('lab/', include('lab.urls'), name='lab-home'),
+
 ]
 
 if settings.DEBUG:
