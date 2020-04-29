@@ -3,7 +3,7 @@
 {% block content %}
     {% for brand in brands %}
         <div class="card mt-3 ml-3 mr-3 mb-3" style="max-width: 50rem;">
-            <a class="text-decoration-none" href="{% url 'tobacco-brands-update' brand.BrandID %}">
+            <a class="text-decoration-none" href="{% url 'tobacco-brands-update' brand.pk %}">
                 <div class="row no-gutters">
                     <div class="col-md-4">
                         <img src="{{ brand.Image.url }}" class="rounded-circle mx-auto d-block mt-1 mb-1"

@@ -6,10 +6,8 @@ from .models import TobaccoList, Wishlist, Inventory
 @receiver(post_save, sender=TobaccoList)
 def create_profile(sender, instance, created, **kwargs):
     if created:
-        Inventory.objects.create(TobaccoID =instance)
+        Inventory.objects.create(Tobacco=instance)
         print('Inventory created!')
 
-        Wishlist.objects.create(TobaccoID = instance)
+        Wishlist.objects.create(Tobacco=instance)
         print('Wishlist created!')
-
-

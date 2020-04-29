@@ -13,16 +13,16 @@ class BrandsForm(forms.ModelForm):
 class TobaccoForm(forms.ModelForm):
     class Meta:
         model = TobaccoList
-        fields = ['BrandID', 'Name', 'Taste', 'Inventory', 'Wish', 'Comment', 'Image', 'QTaste', 'QSmoke', 'QCut']
+        fields = ['Brand', 'Name', 'Taste', 'Inventory', 'Wish', 'Comment', 'Image', 'QTaste', 'QSmoke', 'QCut']
 
 
 class InventoryForm(forms.ModelForm):
     class Meta:
         model = Inventory
-        fields = ['TobaccoID', 'Quantity']
+        fields = ['Tobacco', 'Quantity']
 
 
 class WishForm(forms.ModelForm):
     class Meta:
         model = Wishlist
-        fields = ['TobaccoID', 'Priority']
+        fields = ['Tobacco', 'Priority']

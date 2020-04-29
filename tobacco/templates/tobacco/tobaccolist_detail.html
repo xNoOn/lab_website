@@ -5,15 +5,15 @@
         <img class="rounded-circle article-img" src="{{ object.Image.url }}">
         <div class="media-body">
             <div class="article-metadata">
-                <small class="text-muted">{{ object.TobaccoID.Date_Posted|date:"d F, Y" }}</small>
+                <small class="text-muted">{{ object.Date_Posted|date:"d F, Y" }}</small>
                 <div>
-                    <a class="btn btn-primary btn-sm mt-1 mb-2 mr-2" href="{% url 'tobacco-update' object.TobaccoID %}">Update
+                    <a class="btn btn-primary btn-sm mt-1 mb-2 mr-2" href="{% url 'tobacco-update' object.pk %}">Update
                         Tobacco</a>
                 </div>
             </div>
             <p class="mb-2">
                 <test class="card-title">{{ object.Name }} </test>
-                <test class="ml-3">[{{ object.BrandID.Brand }}]</test>
+                <test class="ml-3">[{{ object.Brand.Brand }}]</test>
             </p>
             <p class="card-text mb-0">
                 <code class="mr-4">Taste: </code>

@@ -2,11 +2,11 @@
 {% load static %}
 {% block content %}
     {% for inv in  inventory %}
-        {% if inv.TobaccoID.Inventory %}
+        {% if inv.Tobacco.Inventory %}
             <div class="card mt-3 ml-3 mb-3" style="max-width: 45em;">
                 <div class="col-md-8 mr-n4 pr-lg-0">
                     <div class="card-body mr-n4 pr-lg-0">
-                        <h5 class="card-title">{{ inv.TobaccoID.Name }} [{{ inv.TobaccoID.BrandID.Brand }}] </h5>
+                        <h5 class="card-title">{{ inv.Tobacco.Name }} [{{ inv.Tobacco.Brand.Brand }}] </h5>
                         <div class="progress">
                             {% if inv.Quantity <= 60 and inv.Quantity > 30 %}
                                 <div class="progress-bar bg-info" role="progressbar" style="width: {{ inv.Quantity }}%"
@@ -23,9 +23,9 @@
                             {% endif %}
                         </div>
                         <a class="btn btn-secondary btn-sm mt-3 mb-n1 mr-1"
-                           href="{% url 'tobacco-inventory-update' inv.InventoryID %}">Update Quantity</a>
+                           href="{% url 'tobacco-inventory-update' inv.pk %}">Update Quantity</a>
                         <a class="btn btn-info btn-sm mt-3 mb-n1"
-                           href="{% url 'tobacco-update' inv.TobaccoID.TobaccoID %}">Update Tobacco</a>
+                           href="{% url 'tobacco-update' inv.Tobacco.pk %}">Update Tobacco</a>
                     </div>
                 </div>
             </div>

@@ -9,7 +9,7 @@ from tobacco.views import (
     inventory_add, inventory_update,
     wishlist_add, wishlist_update,
     BrandsHomeView, TobaccoHomeView, InventoryHomeView, WishlistHomeView,
-    TBCTestView)
+    )
 
 urlpatterns = [
     path('', TobaccoOverviewView.as_view(), name='tobacco-home'),

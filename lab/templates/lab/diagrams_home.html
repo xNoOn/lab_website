@@ -1,7 +1,28 @@
 {% extends "users/base.html" %}
 {% load static %}
 {% block content %}
+
     <div class="content-section card mt-3 ml-3 mr-3  border-0">
-        <h3> Diagrams Home</h3>
+        <table class="table table-hover" style="max-width: 72rem;">
+            <thead>
+            <tr class="table-primary">
+                <th scope="col">JS Charts</th>
+                <th scope="col">Link</th>
+                <th scope="col">Website</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="table-light">
+                <td>ZingChart</td>
+                <td><a href="{% url 'diagrams-zingchart' %}" class="text-dark">Link</a></td>
+                <td><a href="https://www.zingchart.com" class="text-dark">Website</a></td>
+            </tr>
+            <tr class="table-light">
+                <td>Chart.js</td>
+                <td><a href="{% url 'diagrams-chartjs' %}" class="text-dark">Link</a></td>
+                <td><a href="https://www.chartjs.org" class="text-dark">Website</a></td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 {% endblock %}

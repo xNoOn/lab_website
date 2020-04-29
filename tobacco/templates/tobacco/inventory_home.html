@@ -36,10 +36,10 @@
             </thead>
             <tbody>
             {% for inv in inventory %}
-                {% if inv.TobaccoID.Inventory == True %}
+                {% if inv.Tobacco.Inventory == True %}
                     <tr class="table-light">
-                        <td>{{ inv.TobaccoID.BrandID.Brand }}</td>
-                        <td>{{ inv.TobaccoID.Name }}</td>
+                        <td>{{ inv.Tobacco.Brand.Brand }}</td>
+                        <td>{{ inv.Tobacco.Name }}</td>
                         <td>{{ inv.Quantity }} %</td>
                     </tr>
                 {% endif %}

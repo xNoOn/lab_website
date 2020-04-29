@@ -2,11 +2,11 @@
 {% load static %}
 {% block content %}
     {% for w in  wish %}
-        {% if w.TobaccoID.Wish %}
+        {% if w.Tobacco.Wish %}
             <div class="card mt-3 ml-3 mb-3" style="max-width: 45em;">
                 <div class="col-md-8 mr-n4 pr-lg-0">
                     <div class="card-body mr-n4 pr-lg-0">
-                        <h5 class="card-title">{{ w.TobaccoID.Name }} [{{ w.TobaccoID.BrandID.Brand }}] </h5>
+                        <h5 class="card-title">{{ w.Tobacco.Name }} [{{ w.Tobacco.Brand.Brand }}] </h5>
                         <div class="progress">
                             {% if w.Priority == 'High' %}
                                 <div class="progress-bar bg-danger" role="progressbar" style="width:100%"
@@ -21,9 +21,9 @@
                         </div>
 
                         <a class="btn btn-secondary btn-sm mt-3 mb-n1 mr-1"
-                           href="{% url 'tobacco-wishlist-update' w.WishlistID %}">Update Priority</a>
+                           href="{% url 'tobacco-wishlist-update' w.pk %}">Update Priority</a>
                         <a class="btn btn-info btn-sm mt-3 mb-n1"
-                           href="{% url 'tobacco-update' w.TobaccoID.TobaccoID %}">Update Tobacco</a>
+                           href="{% url 'tobacco-update' w.Tobacco.pk %}">Update Tobacco</a>
                     </div>
                 </div>
             </div>

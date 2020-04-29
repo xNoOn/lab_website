@@ -11,3 +11,11 @@ class LabListView(LoginRequiredMixin, TemplateView):
 
 class DiagramsListView(LoginRequiredMixin, TemplateView):
     template_name = 'lab/diagrams_home.html'
+
+
+class ZingChartListView(LoginRequiredMixin, TemplateView):
+    template_name = 'lab/diagram_zingchart.html'
+
+
+class ChartJSListView(LoginRequiredMixin, TemplateView):
+    template_name = 'lab/diagram_chartjs.html'

@@ -7,16 +7,6 @@ from .forms import TobaccoForm, BrandsForm, InventoryForm, WishForm
 from django.contrib import messages
 
 
-class TBCTestView(LoginRequiredMixin, TemplateView):
-    # template_name = 'tobacco/tbc.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(TBCTestView, self).get_context_data(**kwargs)
-        context['tobacco'] = TobaccoList.objects.all()
-        context['title'] = 'Test Page'
-        return context
-
-
 class TobaccoOverviewView(LoginRequiredMixin, TemplateView):
     template_name = 'tobacco/home.html'
 
@@ -30,7 +20,7 @@ class BrandsListView(LoginRequiredMixin, ListView):
     template_name = 'tobacco/brands_view.html'
     context_object_name = 'brands'
     ordering = ["Brand"]
-    paginate_by = 10
+    paginate_by = 7
 
 
 class TobaccoListView(LoginRequiredMixin, ListView):
@@ -38,7 +28,7 @@ class TobaccoListView(LoginRequiredMixin, ListView):
     template_name = 'tobacco/tobaccolist_view.html'
     context_object_name = 'tobacco'
     ordering = ["-Name"]
-    paginate_by = 10
+    paginate_by = 7
 
 
 class InventoryListView(LoginRequiredMixin, ListView):

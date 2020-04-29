@@ -35,10 +35,10 @@
             </thead>
             <tbody>
             {% for wish in wishlist %}
-                {% if wish.TobaccoID.Wish == True %}
+                {% if wish.Tobacco.Wish == True %}
                     <tr class="table-light">
-                        <td>{{ wish.TobaccoID.BrandID.Brand }}</td>
-                        <td>{{ wish.TobaccoID.Name }}</td>
+                        <td>{{ wish.Tobacco.Brand.Brand }}</td>
+                        <td>{{ wish.Tobacco.Name }}</td>
                         <td>{{ wish.Priority }}</td>
                     </tr>
                 {% endif %}

@@ -102,3 +102,12 @@ def taskDelete(request, pk):
     task.delete()
 
     return Response('Item succsesfully delete!')
+
+
+# --------------------------------------------------------
+@api_view(['GET'])
+def brandsCount(request): #Anzahl Brands in der TobaccoList
+    brands = Brands.objects.raw('select TL.Brand_id, TL.Name, TL.id from tobacco_tobaccolist TL GROUP BY Brand_id;')
+    print(brands.columns)
+    serializer = BrandSerializer(brands, many=True)
+    return Response(serializer.data)
