@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from rest_framework.decorators import api_view
+from rest_framework.views import APIView
 from rest_framework.response import Response
 from .serializers import BrandSerializer, TaskSerializer
 from tobacco.models import Brands, Task
+from django.http import JsonResponse
 
 
 @api_view(['GET'])
@@ -19,7 +21,7 @@ def apiOverview(request):
 
 @api_view(['GET'])
 def brandsList(request):
-    brands = Brands.objects.all().order_by('BrandID')
+    brands = Brands.objects.all().order_by('Brand')
     serializer = BrandSerializer(brands, many=True)
     return Response(serializer.data)
 
@@ -105,9 +107,36 @@ def taskDelete(request, pk):
 
 
 # --------------------------------------------------------
-@api_view(['GET'])
-def brandsCount(request): #Anzahl Brands in der TobaccoList
-    brands = Brands.objects.raw('select TL.Brand_id, TL.Name, TL.id from tobacco_tobaccolist TL GROUP BY Brand_id;')
-    print(brands.columns)
-    serializer = BrandSerializer(brands, many=True)
-    return Response(serializer.data)
+def tobaccoPerBrands(request, *args, **kwargs):
+    brands, counts = [], []
+    for p in Brands.objects.raw(
+            'select TL.id, TL.Brand_id, tb.id, tb.Brand, count(TL.Brand_id) Counts from tobacco_tobaccolist TL JOIN tobacco_brands tb on TL.Brand_id = tb.id GROUP BY Brand_id order by count(Brand_id) DESC;'):
+        brands.append(p.Brand)
+        counts.append(p.Counts)
+
+    data = {
+        "brands": brands,
+        "counts": counts
+    }
+    return JsonResponse(data)
+
+
+class TobaccosByBrands(APIView):
+    authentication_classes = []
+    permission_classes = []
+
+    def get(self, request, format=None):
+        brands, counts = [], []
+        for p in Brands.objects.raw(
+                'select TL.id, TL.Brand_id, tb.id, tb.Brand, count(TL.Brand_id) Counts from tobacco_tobaccolist TL JOIN tobacco_brands tb on TL.Brand_id = tb.id GROUP BY Brand_id order by count(Brand_id) DESC;'):
+            brands.append(p.Brand)
+            counts.append(p.Counts)
+
+        data = {
+            "labels": brands,   #Brands
+            "default": counts    #Counts
+        }
+        return Response(data)
+
+
+
