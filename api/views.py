@@ -6,16 +6,23 @@ from .serializers import BrandSerializer, TaskSerializer
 from tobacco.models import Brands, Task
 from django.http import JsonResponse
 
+api_urls = {
+    'List': '/brands-list/',
+    'Detail View': '/brands-detail/<str:pk>/',
+    'Create': '/brands-create/',
+    'Update': '/brands-update/<str:pk>/',
+    'Delete': '/brands-delete/<str:pk>/',
+    'TobaccosByBrands': 'brands-count',
+    'WishlistByBrands': 'wish-brands-count',
+    'InventoryByBrands': 'inv-brands-count',
+    'WishlistByTobacco': 'wish-tbc-count',
+    'InventoryByTobacco': 'inv-tbc-count',
+
+}
+
 
 @api_view(['GET'])
 def apiOverview(request):
-    api_urls = {
-        'List': '/task-list/',
-        'Detail View': '/task-detail/<str:pk>/',
-        'Create': '/task-create/',
-        'Update': '/task-update/<str:pk>/',
-        'Delete': '/task-delete/<str:pk>/',
-    }
     return Response(api_urls)
 
 
@@ -107,18 +114,18 @@ def taskDelete(request, pk):
 
 
 # --------------------------------------------------------
-def tobaccoPerBrands(request, *args, **kwargs):
-    brands, counts = [], []
-    for p in Brands.objects.raw(
-            'select TL.id, TL.Brand_id, tb.id, tb.Brand, count(TL.Brand_id) Counts from tobacco_tobaccolist TL JOIN tobacco_brands tb on TL.Brand_id = tb.id GROUP BY Brand_id order by count(Brand_id) DESC;'):
-        brands.append(p.Brand)
-        counts.append(p.Counts)
-
-    data = {
-        "brands": brands,
-        "counts": counts
-    }
-    return JsonResponse(data)
+# def tobaccoPerBrands(request, *args, **kwargs):
+#     brands, counts = [], []
+#     for p in Brands.objects.raw(
+#             'select TL.id, TL.Brand_id, tb.id, tb.Brand, count(TL.Brand_id) Counts from tobacco_tobaccolist TL JOIN tobacco_brands tb on TL.Brand_id = tb.id GROUP BY Brand_id order by count(Brand_id) DESC;'):
+#         brands.append(p.Brand)
+#         counts.append(p.Counts)
+#
+#     data = {
+#         "brands": brands,
+#         "counts": counts
+#     }
+#     return JsonResponse(data)
 
 
 class TobaccosByBrands(APIView):
@@ -133,10 +140,79 @@ class TobaccosByBrands(APIView):
             counts.append(p.Counts)
 
         data = {
-            "labels": brands,   #Brands
-            "default": counts    #Counts
+            "labels": brands,  # Brands
+            "default": counts  # Counts
         }
         return Response(data)
 
 
+class WishlistByBrands(APIView):
+    authentication_classes = []
+    permission_classes = []
 
+    def get(self, request, format=None):
+        brands, counts = [], []
+        for p in Brands.objects.raw(
+                'select TL.id, TL.Brand_id, tb.id, tb.Brand Brand, count(TL.Brand_id) Counts from tobacco_tobaccolist TL JOIN tobacco_brands tb on TL.Brand_id = tb.id where Wish == true GROUP BY Brand_id order by count(Brand_id) DESC;'):
+            brands.append(p.Brand)
+            counts.append(p.Counts)
+
+        data = {
+            "labels": brands,  # Brands
+            "default": counts  # Counts
+        }
+        return Response(data)
+
+
+class InventoryByBrands(APIView):
+    authentication_classes = []
+    permission_classes = []
+
+    def get(self, request, format=None):
+        brands, counts = [], []
+        for p in Brands.objects.raw(
+                'select TL.id, TL.Brand_id, tb.id, tb.Brand Brand, count(TL.Brand_id) Counts from tobacco_tobaccolist TL JOIN tobacco_brands tb on TL.Brand_id = tb.id where Inventory == true GROUP BY Brand_id order by count(Brand_id) DESC;'):
+            brands.append(p.Brand)
+            counts.append(p.Counts)
+
+        data = {
+            "labels": brands,  # Brands
+            "default": counts  # Counts
+        }
+        return Response(data)
+
+
+class WishlistByTobacco(APIView):
+    authentication_classes = []
+    permission_classes = []
+
+    def get(self, request, format=None):
+        brands, counts = [], []
+        for p in Brands.objects.raw(
+                'select TL.id, count(TL.Inventory) Counts from tobacco_tobaccolist TL where Wish == true;'):
+            brands.append(p.Brand)
+            counts.append(p.Counts)
+
+        data = {
+            "labels": 'Wishlist',  # Brands
+            "default": counts  # Counts
+        }
+        return Response(data)
+
+
+class InventoryByTobacco(APIView):
+    authentication_classes = []
+    permission_classes = []
+
+    def get(self, request, format=None):
+        brands, counts = [], []
+        for p in Brands.objects.raw(
+                'select TL.id, count(TL.Inventory) Counts from tobacco_tobaccolist TL where Inventory == true;'):
+            brands.append(p.Brand)
+            counts.append(p.Counts)
+
+        data = {
+            "labels": 'Inventory',  # Brands
+            "default": counts  # Counts
+        }
+        return Response(data)

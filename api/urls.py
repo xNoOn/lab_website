@@ -16,5 +16,9 @@ urlpatterns = [
     path('task-update/<str:pk>/', views.taskUpdate, name="task-update"),
     path('task-delete/<str:pk>/', views.taskDelete, name="task-delete"),
 
-    path('brands-count/', views.TobaccosByBrands.as_view(), name="brands-count"),
+    path('tbc-brands-count/', views.TobaccosByBrands.as_view(), name="brands-count"),
+    path('wish-brands-count/', views.WishlistByBrands.as_view(), name="wish-brands-count"),
+    path('inv-brands-count/', views.InventoryByBrands.as_view(), name="inv-brands-count"),
+    path('wish-tbc-count/', views.WishlistByTobacco.as_view(), name="wish-tbc-count"),
+    path('inv-tbc-count/', views.InventoryByTobacco.as_view(), name="inv-tbc-count"),
 ]
