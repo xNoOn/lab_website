@@ -49,6 +49,9 @@ class TobaccoList(models.Model):
     Inventory = models.BooleanField(default=True)
     Wish = models.BooleanField(default=False)
 
+    class Meta:
+        unique_together = ('Brand', 'Name')
+
     def __str__(self):
         return f'{self.Name}  [{self.Brand.Brand}] '
 
