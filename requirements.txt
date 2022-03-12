@@ -10,7 +10,7 @@ docutils==0.16
 gunicorn==20.0.4
 jmespath==0.9.5
 MarkupSafe==2.0.0a1
-Pillow==7.1.2
+Pillow==9.0.1
 psycopg2==2.8.5
 python-dateutil==2.8.1
 pytz==2019.3
